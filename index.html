@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>merry christmas!!!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div style="position: absolute; width: 5px; height: 5px; color: red; top: 500px; left: 100px;">
+    </div>
+
+    <div class="intro">
+      <h1>christmas artistry!</h1>
+      <div class="pg-0 hide">
+        <p>this was made for <strong>the whatevers</strong> by <strong>bucketfish</strong> for the bucket secret santa 2022.</p>
+        <p>are you <em>ready?</em></p>
+        <p><small>ps: this site uses cookies to store your drawings. hope you're ok with that.</small></p>
+      </div>
+      <div class="pg-1 hide">
+        <p><strong>you look adorable!</strong></p>
+        <p>now, some of the scrunklies in the town kind of need a little bit of <em>help...</em></p>
+      </div>
+      <div class="pg-2 hide">
+        <p>draw a scary <strong>face</strong> for the <em>scarecrow</em> in the village!</p>
+      </div>
+      <div class="pg-3 hide">
+        <p><strong>nice!</strong> a great drawing for the scrunkly village.</p>
+        <p>you've just saved their christmas dinner!</p>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="content">
+      <div class="info">
+        <div class="pg-0 hide">
+          <p>start by drawing a little scrunkly using the canvas on the <strong>right</strong> :D</p>
+          <p>that's <em>you!</em></p>
+          <p><small>sorry for not having an undo button. :p</small></p>
+          <img class="character" src="images/welcome.png"  alt="">
+        </div>
+
+
+        <div class="dialogue pg-1 hide">
+          <img class="character" src="images/talk.png" alt=""></img>
+
+          <div class="">
+            <p>— hello!!!!</p>
+            <p class="right">hi!! —</p>
+            <p>— village is in shambles DDDD: we have a farm, but our scarecrow isn't <em>scary</em> enough. all the birds are eating our crops!!! we have no food!!!</p>
+            <p class="right">oh noooo :( —</p>
+            <p>— will you help us draw a <em>superrr scary</em> scarecrow?</p>
+          </div>
+          <img class="character load-1" data-load="character"></img>
+        </div>
+
+        <div class="pg-2 hide">
+          <img class="character" src="images/scarecrow.png" alt="">
+        </div>
+
+      </div>
+
+      <div class="pg-3 hide">
+        <img src="images/scarecrow.png" alt="">
+
+      </div>
+
+      <div id="draw">
+        <canvas id="canvas"></canvas>
+        <div class="nav">
+            <div class="clr" style="background-color: #FFF" data-width=5></div>
+            <div class="clr" style="background-color: #FF6663" data-width=5></div>
+            <div class="clr" style="background-color: #FEB144" data-width=5></div>
+            <div class="clr" style="background-color: #F0F08F" data-width=5></div>
+            <div class="clr" style="background-color: #9EE09E" data-width=5></div>
+            <div class="clr" style="background-color: #9EC1CF" data-width=5></div>
+            <div class="clr" style="background-color: #CC99C9" data-width=5></div>
+
+            <div class="clr eraser" data-width=25><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M5.662 23l-5.369-5.365c-.195-.195-.293-.45-.293-.707 0-.256.098-.512.293-.707l14.929-14.928c.195-.194.451-.293.707-.293.255 0 .512.099.707.293l7.071 7.073c.196.195.293.451.293.708 0 .256-.097.511-.293.707l-11.216 11.219h5.514v2h-12.343zm3.657-2l-5.486-5.486-1.419 1.414 4.076 4.072h2.829zm6.605-17.581l-10.677 10.68 5.658 5.659 10.676-10.682-5.657-5.657z"/></svg></div>
+            <button class="clear">clear</button>
+        </div>
+      </div>
+
+      <div class="last">
+        <button class="done">
+          <p><em id="buttontext">ok! ></em></p>
+        </button>
+      </div>
+
+
+
+      <!--<button class="save">save</button>-->
+      <!-- <button class="download hide">download</button> -->
+      <!--
+      <img id="canvasload" src="" alt="">
+      <button class="AAA">AAAAA</button> -->
+    </div>
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+
+
+
+
+  </body>
+</html>
