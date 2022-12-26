@@ -42,15 +42,11 @@ clearBtn.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 })
 
-function preventDefault(e) {
-    e.preventDefault();
-}
-
 
 window.addEventListener("mousedown", (e) => draw = true)
 window.addEventListener("mouseup", (e) => draw = false)
-window.addEventListener("touchstart", (e) => {draw = true; prevX = null; prevY = null; return false})
-window.addEventListener("touchend", (e) => {draw = false; prevX = null; prevY = null; return false;})
+window.addEventListener("touchstart", (e) => {draw = true; prevX = null; prevY = null; })
+window.addEventListener("touchend", (e) => {draw = false; prevX = null; prevY = null;})
 
 
 
