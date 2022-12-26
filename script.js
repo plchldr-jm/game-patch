@@ -67,13 +67,13 @@ window.addEventListener("mousemove", (e) => {
 
 
     if(prevX == null || prevY == null || !draw){
-        prevX = e.pageX - rect.left
-        prevY = e.pageY - offset
+        prevX = e.clientX + window.pageXOffset - rect.left
+        prevY = e.clientY + window.pageYOffset - offset
         return
     }
 
-    let currentX = e.pageX - rect.left
-    let currentY = e.pageY - offset
+    let currentX = e.clientX + window.pageXOffset - rect.left
+    let currentY = e.clientY + window.pageYOffset- offset
 
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
@@ -104,13 +104,13 @@ window.addEventListener("touchmove", (e) => {
 
 
     if(prevX == null || prevY == null || !draw){
-        prevX = e.touches[0].pageX - rect.left
-        prevY = e.touches[0].pageY - offset
+        prevX = e.touches[0].clientX + window.pageXOffset - rect.left
+        prevY = e.touches[0].clientY + window.pageYOffset - offset
         return
     }
 
-    let currentX = e.touches[0].pageX - rect.left
-    let currentY = e.touches[0].pageY - offset
+    let currentX = e.touches[0].clientX + window.pageXOffset - rect.left
+    let currentY = e.touches[0].clientY + window.pageYOffset - offset
 
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
