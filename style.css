@@ -40,6 +40,18 @@ h1 {
   color: var(--pink);
 }
 
+
+h2 {
+  margin: 10px 0;
+  margin-bottom: 35px;
+  font-size: 64px;
+  font-weight: bold;
+  font-family: 'Liu Jian Mao Cao', cursive;
+  text-align: center;
+  color: var(--purple);
+}
+
+
 p {
   margin: 20px 0;
   font-size: 24px;
@@ -63,7 +75,8 @@ strong {
 button{
   border: none;
   outline: none;
-  padding: 5px 20px;
+
+  padding: 10px 20px;
   border-radius: 20px;
 }
 
@@ -80,13 +93,17 @@ hr {
 }
 
 
+canvas {
+  display: block;
+}
+
 .intro {
   padding-top: 50px;
 }
 
 
 .content {
-  padding: 0 100px;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -119,8 +136,8 @@ hr {
 #draw {
   background-color: var(--purple);
   border-radius: 20px;
-  aspect-ratio: 60 / 48;
-  width: 50%;
+  aspect-ratio: 60 / 50;
+  width: 45%;
   /* height: 480px; */
   padding: 10px;
   flex-shrink: 0;
@@ -128,9 +145,10 @@ hr {
 
 }
 
-canvas {
+#canvas {
+  aspect-ratio: 60 / 48;
   width: 100%;
-  height: 90%;
+  /* height: 90%; */
   /* height: 100%; */
   background-color: var(--dark);
   border-radius: 10px;
@@ -167,6 +185,8 @@ canvas {
 }
 
 button.clear {
+  padding: 5px 20px;
+  border-radius: 20px;
   height: 36px;
   background-color: var(--light);
 }
@@ -190,10 +210,20 @@ button.clear {
 }
 
 
-
+.character-tiny {
+  width: 10vw;
+}
 
 .character {
   width: 20vw;
+}
+
+.character-mid {
+  width: 30vw;
+}
+
+.character-large {
+  width: 40vw;
 }
 
 .dialogue {
@@ -203,7 +233,7 @@ button.clear {
   align-items: flex-end;
 }
 
-.dialogue div {
+.dialogue.pg-2 div {
   flex-grow: 4;
 }
 
@@ -224,4 +254,69 @@ button.clear {
 
 .hide {
   display: none !important;
+}
+
+
+
+#scarecrow-face {
+  position: absolute;
+  width: 7vw;
+  top: 6.7vw;
+  left: 6vw;
+}
+
+#tree-star {
+  position: absolute;
+  width: 10vw;
+  top: 1vw;
+  left: 5.5vw;
+
+}
+
+#sign {
+  position: absolute;
+  width: 15vw;
+  top: 7vw;
+  left: 2.2vw;
+  rotate: -7deg;
+}
+
+#group-pic {
+  width: 900px;
+  height: 550px;
+  border: 3px solid var(--light);
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+
+
+div.pg-10 img {
+  width: 30vw;
+}
+
+button.download {
+  background-color: var(--pink);
+  font-family: 'Liu Jian Mao Cao', cursive;
+  /* font-style: italic; */
+  font-size: 32px;
+  /* font-weight: bold; */
+}
+
+button.download:hover {
+  background-color: var(--purple);
+}
+
+div.pg-10 div {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+div.pg-10 div img {
+  width: 30vw;
+  border: 3px solid var(--light);
+  border-radius: 20px;
+
 }

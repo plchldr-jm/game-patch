@@ -89,24 +89,38 @@ window.addEventListener("mousemove", (e) => {
 const canvasobj = document.getElementById("draw")
 const buttontext = document.getElementById("buttontext")
 
+var group = document.getElementById("group-pic")
+group.height = group.offsetHeight;
+group.width = group.offsetWidth;
+
+var context = group.getContext("2d")
+context.imageSmoothingEnabled = false;
+
 var currentPage = 0
 var currentDraw = "character"
 
-var hideCanvas = [1, 3]
+var hideCanvas = [1, 3, 4, 6, 7, 9, 10]
 var drawLabels = {
   0: "character",
-  2: "scarecrow"
+  2: "scarecrow",
+  5: "star",
+  8: "sign"
 }
 
 var drawings = {
 }
 
-// shared elements
+
 let done = document.querySelector(".done")
 done.addEventListener("click", () => {
-  drawings[currentDraw] = canvas.toDataURL();
-  // localStorage.setItem(currentDraw, canvas.toDataURL());
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+  if (!(currentDraw in drawings)){
+    drawings[currentDraw] = canvas.toDataURL();
+    // localStorage.setItem(currentDraw, canvas.toDataURL());
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+  }
+
+
 
   // open next page?
 
@@ -144,16 +158,84 @@ function showNextPage(){
   var loads = document.getElementsByClassName("load-" + (currentPage))
 
   for (var i = 0; i < loads.length; i++){
+    loads[i].src = drawings[loads[i].dataset.load];
 
-    var dataURL = drawings[loads[i].dataset.load];
-    loads[i].src = dataURL
+    // console.log(drawings)
+  }
+
+  if (currentPage == 10){
+    let lastbutton = document.querySelector(".last")
+    lastbutton.style.display = "none"
+
+
+    // canvas!!! aaah.
+
+    group = document.getElementById("group-pic")
+    group.height = group.offsetHeight;
+    group.width = group.offsetWidth;
+
+    context = group.getContext("2d")
+    context.imageSmoothingEnabled = false;
+
+
+
+    // canvas dimensions:
+    // width: 900px;
+    // height: 550px;
+
+    // path, x, y, width, width / height ratio
+    ds("images/scarecrow.png", 200, 60, 200, 229 / 399, context)
+
+    ds(drawings["scarecrow"], 260, 120, 80, 60 / 48, context) // scarecrow face
+
+
+    ds('images/sign.png', 550, 130, 250, 376 / 366, context)
+
+
+
+    ds(drawings["sign"], 580, 225, 170, 60 / 48, context, -10) // SIGN
+
+    // context.restore()
+
+
+
+
+    ds(drawings["character"], 650, 440, 150, 60 / 48, context) //char
+
+    ds('images/welcome.png', 520, 420, 150, 415 / 373, context)
+    ds('images/yay.png', 170, 340, 300, 554 / 399, context)
+
+    ds('images/tree.png', -15, 120, 300, 247 / 366, context)
+    ds('images/door.png', 300, 60, 700, 554 / 399, context)
+
+    ds(drawings["star"], 90, 150, 80, 60 / 48, context) //star
+
+
 
   }
 
-
-
 }
 
+
+function ds(path, posx, posy, width, ratio, ctct, rotation = 0) {
+  var image = new Image()
+  image.src = path
+  image.onload = function(){
+    if (rotation != 0){
+
+      ctct.setTransform(1, 0, 0, 1, posx, posy); // sets scale and origin
+      ctct.rotate(rotation*Math.PI/180);
+      ctct.drawImage(image, 0, 0, width, (1 / ratio) * width)
+
+      ctct.setTransform(1,0,0,1,0,0)
+    }
+    else {
+      ctct.drawImage(image, posx, posy, width, (1 / ratio) * width)
+
+    }
+
+  }
+}
 
 
 window.addEventListener("load", (event) => {
@@ -168,8 +250,54 @@ window.addEventListener("load", (event) => {
 //
 
 
-function downloadDrawingeh
-(){
+let gpdl = document.getElementById("gp-dl")
+gpdl.addEventListener("click", () => {
+  let data = group.toDataURL("imag/png")
+  let a = document.createElement("a")
+  a.href = data
+  a.download = "group picture.png"
+  a.click()
+})
+
+
+let chardl = document.getElementById("character-dl")
+chardl.addEventListener("click", () => {
+  let data = drawings["character"]
+  let a = document.createElement("a")
+  a.href = data
+  a.download = "character.png"
+  a.click()
+})
+
+let scdl = document.getElementById("scarecrow-dl")
+scdl.addEventListener("click", () => {
+  let data = drawings["scarecrow"]
+  let a = document.createElement("a")
+  a.href = data
+  a.download = "scarecrow.png"
+  a.click()
+})
+
+let stardl = document.getElementById("star-dl")
+stardl.addEventListener("click", () => {
+  let data = drawings["star"]
+  let a = document.createElement("a")
+  a.href = data
+  a.download = "star.png"
+  a.click()
+})
+
+let signdl = document.getElementById("sign-dl")
+signdl.addEventListener("click", () => {
+  let data = drawings["sign"]
+  let a = document.createElement("a")
+  a.href = data
+  a.download = "sign.png"
+  a.click()
+})
+
+
+function downloadDrawing(){
   let data = canvas.toDataURL("imag/png")
   let a = document.createElement("a")
   a.href = data
