@@ -45,18 +45,12 @@ clearBtn.addEventListener("click", () => {
 function preventDefault(e) {
     e.preventDefault();
 }
-function disableScroll() {
-    document.body.addEventListener('touchmove', preventDefault, { passive: false });
-}
-function enableScroll() {
-    document.body.removeEventListener('touchmove', preventDefault);
-}
 
 
 window.addEventListener("mousedown", (e) => draw = true)
 window.addEventListener("mouseup", (e) => draw = false)
-window.addEventListener("touchstart", (e) => {draw = true; disableScroll(); return false})
-window.addEventListener("touchend", (e) => {draw = false; enableScroll(); prevX = null; prevY = null; return false;})
+window.addEventListener("touchstart", (e) => {draw = true; prevX = null; prevY = null; return false})
+window.addEventListener("touchend", (e) => {draw = false; prevX = null; prevY = null; return false;})
 
 
 
