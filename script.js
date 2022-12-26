@@ -42,23 +42,38 @@ clearBtn.addEventListener("click", () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 })
 
+function preventDefault(e) {
+    e.preventDefault();
+}
+function disableScroll() {
+    document.body.addEventListener('touchmove', preventDefault, { passive: false });
+}
+function enableScroll() {
+    document.body.removeEventListener('touchmove', preventDefault);
+}
+
 
 window.addEventListener("mousedown", (e) => draw = true)
 window.addEventListener("mouseup", (e) => draw = false)
+window.addEventListener("touchstart", (e) => {draw = true; disableScroll(); return false})
+window.addEventListener("touchend", (e) => {draw = false; enableScroll(); prevX = null; prevY = null; return false;})
+
+
 
 window.addEventListener("mousemove", (e) => {
     bodyRect = document.body.getBoundingClientRect(),
     rect = canvas.getBoundingClientRect(),
     offset = rect.top - bodyRect.top;
 
+
     if(prevX == null || prevY == null || !draw){
-        prevX = e.clientX - rect.left
-        prevY = e.clientY - offset
+        prevX = e.pageX - rect.left
+        prevY = e.pageY - offset
         return
     }
 
-    let currentX = e.clientX - rect.left
-    let currentY = e.clientY - offset
+    let currentX = e.pageX - rect.left
+    let currentY = e.pageY - offset
 
     ctx.beginPath()
     ctx.moveTo(prevX, prevY)
@@ -68,6 +83,44 @@ window.addEventListener("mousemove", (e) => {
     prevX = currentX
     prevY = currentY
 })
+
+addEventListener("resize", (event) => {
+  bodyRect = document.body.getBoundingClientRect(),
+      rect = canvas.getBoundingClientRect(),
+      offset = rect.top - bodyRect.top;
+
+  canvas.height = canvas.offsetHeight;
+  canvas.width = canvas.offsetWidth;
+
+  ctx.lineWidth = 5
+  ctx.strokeStyle = "#FFF"
+});
+
+
+window.addEventListener("touchmove", (e) => {
+    bodyRect = document.body.getBoundingClientRect(),
+    rect = canvas.getBoundingClientRect(),
+    offset = rect.top - bodyRect.top;
+
+
+    if(prevX == null || prevY == null || !draw){
+        prevX = e.touches[0].pageX - rect.left
+        prevY = e.touches[0].pageY - offset
+        return
+    }
+
+    let currentX = e.touches[0].pageX - rect.left
+    let currentY = e.touches[0].pageY - offset
+
+    ctx.beginPath()
+    ctx.moveTo(prevX, prevY)
+    ctx.lineTo(currentX, currentY)
+    ctx.stroke()
+
+    prevX = currentX
+    prevY = currentY
+})
+
 
 //
 // let loadimg = document.querySelector(".AAA")
